@@ -33,14 +33,6 @@ describe('Reviews Endpoints', function() {
         testThings,
       )
     )
-    
-    it(`responds 401 'Unauthorized request' when invalid password`, () => {
-      const unserInvalidPass = { user_name: testUsers[0].user_name, password: 'wrong' }
-      return supertest(app)
-        .post('/api/reviews')
-        .set('Authorization', helpers.makeAuthHeader(unserInvalidPass))
-        .expect(401, { error: 'Unauthorized request' })
-    })
 
     it(`creates a review, responding with 201 and the new review`, function() {
       this.retries(3)
